@@ -1,0 +1,28 @@
+:root {
+  --body-text-size: 16px;
+  --small-text-size: 16px;
+  --large-text-size: 18px;
+  --navigation-text-size: 16px;
+  --button-text-size: 16px;
+  --button-height: 50px;
+  --button-padding-sides: 24px;
+
+  --background: #e3e3ff;
+  --primary: #8f8fff;
+  --darker-primary: #0c0c57;
+  --accent: #b4e379;
+  --on-surface: #feffef; /* white color */
+  --grey: #6b6b78;
+
+  --main-font: "Open Sans", sans-serif;
+  --secondary-font: "Lora", sans-serif;
+}
+
+html,
+body {
+  margin: 0%;
+  padding-left: 0%;
+  height: 100%;
+  width: 100%;
+  font-family: var(--main-font);
+}
