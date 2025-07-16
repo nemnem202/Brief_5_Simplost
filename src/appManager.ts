@@ -30,8 +30,10 @@ export class AppManager {
 
   private displayPage() {
     if (this.currentPage.content) {
-      document.body.innerHTML = "";
-      document.body.appendChild(this.currentPage.content);
+      const app = document.getElementById("app");
+      if (!app) return;
+      app.innerHTML = "";
+      app.appendChild(this.currentPage.content);
     } else {
       console.log(
         "Erreur du chargement de la page, contenu supposé etre chargé:",
