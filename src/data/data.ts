@@ -12,6 +12,7 @@ export const destinations: Destinations = [
   { label: "Bruxelles", value: "brussels", distanceFromParis: 300 },
   { label: "Copenhague", value: "copenhagen", distanceFromParis: 1380 },
 ];
+
 export const standing: Standing = [
   {
     label: "Économie",
