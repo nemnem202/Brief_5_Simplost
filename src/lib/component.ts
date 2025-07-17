@@ -1,3 +1,3 @@
 export abstract class Component {
-  public content: HTMLDivElement | undefined;
+  public content: HTMLElement | undefined;
 }
