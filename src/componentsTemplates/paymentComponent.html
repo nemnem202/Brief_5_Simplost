@@ -1,0 +1,42 @@
+<template>
+    <section>
+        <h2>Before proceeding to pay, please verify your travel itinary:</h2>
+        <div>
+            <div>
+                <div id="clientInfos"></div>
+                <div id="travelInfos"></div>
+            </div>
+            <div id="price"></div>
+        </div>
+        <p>Lorem ipsum enim est malesuada faucibus odio risus placerat orci tellus cras aliquam convallis duis sit curabitur porttitor quam sed egestas amet nullam nisl sollicitudin ut duis netus enim varius duis faucibus facilisis et semper.</p>
+        <div>
+            <a id="returnToForm"><- Edit Personal Details</a>
+            <div>
+                <input type="checkbox" name="consent" id="consent">
+                <label for="consent">I accept the T&C</label>
+            </div>
+        </div>
+    </section>
+    <section>
+        <h2>Add your card details</h2>
+        <form>
+            <div>
+                <label for="cardName">Name</label>
+                <input type="text" name="cardName" id="cardName" placeholder="John Doe">
+            </div>
+            <div>
+                <label for="cardNumber">Card Number</label>
+                <input type="text" name="cardNumber" id="cardNumber" placeholder="XXXX-XXXX-XXXX-XXXX">
+            </div>
+            <div>
+                <label for="cardExpiry">Expiration Date</label>
+                <input type="text" name="cardExpiry" id="cardExpiry" placeholder="MM/YYYY">
+            </div>
+            <div>
+                <label for="cardCvv">Card Number</label>
+                <input type="text" name="cardCVV" id="cardCvv">
+            </div>
+            <button class="bouton" type="submit" id="payBtn">Pay for the travel</button>
+        </form>
+    </section>
+</template>
