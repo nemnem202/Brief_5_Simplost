@@ -1,6 +1,6 @@
-import type { Destinations, Standing } from "./Types";
+import type { Destination, Standing } from "./Types";
 
-export const destinations: Destinations = [
+export const destinations: Destination[] = [
   { label: "Paris", value: "paris", distanceFromParis: 0 },
   { label: "Londres", value: "london", distanceFromParis: 340 },
   { label: "Berlin", value: "berlin", distanceFromParis: 1050 },
@@ -13,7 +13,7 @@ export const destinations: Destinations = [
   { label: "Copenhague", value: "copenhagen", distanceFromParis: 1380 },
 ];
 
-export const standing: Standing = [
+export const standing: Standing[] = [
   {
     label: "Économie",
     value: "economy",
@@ -22,7 +22,7 @@ export const standing: Standing = [
   },
   {
     label: "Affaires",
-    value: "business",
+    value: "buisness",
     pricePerKm: 0.25,
     perks: ["Siège large", "Repas chaud", "Accès salon"],
   },

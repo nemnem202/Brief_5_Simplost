@@ -1,6 +1,49 @@
-export type Destinations = { label: string; value: string; distanceFromParis: number }[];
+export type CityLabel =
+  | "Paris"
+  | "Londres"
+  | "Berlin"
+  | "Madrid"
+  | "Rome"
+  | "Lisbonne"
+  | "Vienne"
+  | "Amsterdam"
+  | "Bruxelles"
+  | "Copenhague";
 
-export type Standing = { label: string; value: string; pricePerKm: number; perks: string[] }[];
+export type CityValue =
+  | "paris"
+  | "london"
+  | "berlin"
+  | "madrid"
+  | "rome"
+  | "lisbon"
+  | "vienna"
+  | "amsterdam"
+  | "brussels"
+  | "copenhagen";
+
+export type StandingLabel = "Économie" | "Affaires" | "Première classe";
+
+export type StandingValue = "economy" | "buisness" | "first";
+
+export type Destination = { label: CityLabel; value: CityValue; distanceFromParis: number };
+
+export type Perk =
+  | "Siège standard"
+  | "Siège large"
+  | "Repas chaud"
+  | "Accès salon"
+  | "Chauffeur"
+  | "Service à la place"
+  | "Champagne"
+  | "Siège premium";
+
+export type Standing = {
+  label: StandingLabel;
+  value: StandingValue;
+  pricePerKm: number;
+  perks: Perk[];
+};
 
 export type ClientInformations = {
   name: string;
@@ -20,6 +63,6 @@ export type FlightInformation = {
   date: Date;
   price: number;
   standing: Standing;
-  originCity: string;
-  destinationCity: string;
+  originCity: CityValue;
+  destinationCity: CityValue;
 };
