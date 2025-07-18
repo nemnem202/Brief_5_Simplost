@@ -62,7 +62,7 @@ export type PaymentInformations = {
 export type FlightInformation = {
   date: Date;
   price: number;
-  standing: Standing;
+  standing: StandingValue;
   originCity: CityValue;
   destinationCity: CityValue;
 };
