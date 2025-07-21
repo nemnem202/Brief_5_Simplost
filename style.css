@@ -27,6 +27,7 @@ body {
   width: 100%;
   font-family: var(--main-font);
   font-size: var(--body-text-size);
+  background-color: var(--background);
 }
 
 header {
