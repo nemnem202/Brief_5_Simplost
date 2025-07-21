@@ -1,0 +1,234 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+body{
+  background-color: #E3E3FF;
+  font-family: 'Open Sans';
+}
+
+h2{
+  font-family: "lora";
+  text-align: center;
+  font-size: 25px;
+}
+
+h3{
+  color: #6B6B78;
+  font-style: normal;
+  opacity: .7;
+  font-weight: 100;
+}
+
+.date-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.booking-form {
+  display: grid;
+  gap: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.name-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.contact-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.destination-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.input-group label {
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.input-group input,
+.input-group select {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 18px;
+  font-size: 14px;
+}
+
+.input-group input.error {
+  border: 2px solid #7D0C0C;
+}
+
+.class-selection {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.class-option {
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 200px;
+}
+
+.class-option.selected {
+  border-color: #4f46e5;
+}
+
+.class-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.class-features {
+  flex-grow: 1;
+}
+
+.class-features p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.class-price {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.price {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.class-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: center;
+}
+
+.class-btn.economy {
+  background-color: #22c55e;
+  color: white;
+}
+
+.class-btn.business {
+  background-color: #22c55e;
+  color: white;
+}
+
+.class-btn.first-class {
+  background-color: #22c55e;
+  color: white;
+}
+
+.total-price {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.price-amount {
+  font-weight: 700;
+  font-size: 18px;
+  color: #4f46e5;
+}
+
+h3 {
+  margin: 20px 0 10px 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+
+.threeboxes{
+display: flex;
+flex-direction: row;
+gap: 20px;
+}
+
+
+.box{
+width: 170px;
+height: 200px;
+border-radius: 10px;
+background-color: #FEFFEF;
+border: 1px solid #151564;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+padding: 10px;
+}
+
+.buttongreen{
+  background-color: #B4E379;
+  font-weight: 500;
+  border-radius: 5px;
+  width: auto;
+  border: none;
+  height: 35px;
+  padding: 0px 24px 0px 24px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  
+}
+
+.price{
+  font-weight: 700;
+}
+
+.boxcontent{
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+@media (max-width: 768px) {
+  .name-row,
+  .contact-row,
+  .destination-row,
+  .date-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .threeboxes {
+    flex-direction: column;
+    align-items: center;
+  }
+}

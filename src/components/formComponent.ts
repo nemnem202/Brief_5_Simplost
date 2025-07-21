@@ -15,8 +15,10 @@ export class FormComponent extends Component {
 const toSelect = document.getElementById("to") as HTMLSelectElement;
 destinations.forEach(() => {
   const option = document.getElementById("option");
-  option.value = destination.value;
-  option.textContent = destination.label;
-  toSelect.appendChild(option);
-
+//todo
+  // option.value = destination.value;
+  // option.textContent = destination.label;
+  // toSelect.appendChild(option);
+// }
+  
 });
