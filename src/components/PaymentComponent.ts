@@ -42,3 +42,4 @@ export class PaymentComponent extends Component {
     p.innerText = text;
     htmlElement.appendChild(p);
   }
+}
