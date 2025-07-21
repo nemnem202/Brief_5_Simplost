@@ -1,17 +1,22 @@
-import { AppManager } from "../appManager";
 import { Component } from "../lib/component";
-import createButton from "../utils/button";
+import template from "../componentsTemplates/formComponent.html?raw"
+import "../componentsStyleSheets/formComponent.css"
+import { destinations } from "../data/data";
+
 
 export class FormComponent extends Component {
   constructor() {
-    super();
+    super(template);
     console.log("form init");
-    this.content = document.createElement("div");
-    this.content.innerText = "Form component";
-    this.content.appendChild(
-      createButton("nextPage", "boutonCoucou", () =>
-        AppManager.getInstance().changePage(new FormComponent())
-      )
-    );
-  }
+    this.content?.querySelector
 }
+}
+
+const toSelect = document.getElementById("to") as HTMLSelectElement;
+destinations.forEach(() => {
+  const option = document.getElementById("option");
+  option.value = destination.value;
+  option.textContent = destination.label;
+  toSelect.appendChild(option);
+
+});
