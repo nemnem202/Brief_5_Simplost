@@ -1,0 +1,110 @@
+.payment-section{
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    color: var(--darker-primary);
+}
+
+.payment-title{
+    color: var(--grey);
+    font-size: var(--large-text-size);
+    font-weight: 500;
+}
+
+.payment-main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--background);
+    gap: 100px;
+    padding: 100px 0px;
+    box-sizing: border-box;
+}
+
+*{
+    margin: 0
+}
+
+.payment-reservation-infos{
+    background-color: var(--on-surface);
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 30px;
+    gap: 8px;
+}
+
+.payment-client, .payment-flight{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-weight: 600;
+}
+
+.payment-price{
+    background-color: var(--darker-primary);
+    color: var(--accent);
+    display: flex;
+    justify-content: center;
+    padding: 8px;
+    font-weight: 700;
+}
+
+.payment-checking-content{
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.payment-checking{
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+.payment-return-link{
+    display: flex;
+    gap: 4px;
+}
+
+.payment-arrow-icon{
+    height: 20px;
+}
+
+.payment-form{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-end;
+}
+
+.payment-info{
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    width: 100%;
+}
+
+.payment-info-line{
+    display: flex;
+    gap: 16px;
+    width: 100%;
+}
+
+.payment-form input{
+    padding: 12px;
+    border-radius: 15px;
+    border: none;
+}
+
+#payBtn{
+    min-width: 30%;
+}
+
+.payment-consent{
+    display: flex;
+    gap: 8px;
+}
