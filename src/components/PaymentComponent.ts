@@ -1,7 +1,7 @@
 import { Component } from "../lib/component";
-import templateHTML from "../componentsTemplates/paymentComponent.html?raw";
 import type { ClientInformations, FlightInformation } from "../data/Types";
 import { AppManager } from "../appManager";
+import templateHTML from "../componentsTemplates/paymentComponent.html?raw";
 
 export class PaymentComponent extends Component {
   private clientData: ClientInformations | undefined;
@@ -42,4 +42,3 @@ export class PaymentComponent extends Component {
     p.innerText = text;
     htmlElement.appendChild(p);
   }
-}
