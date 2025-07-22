@@ -1,6 +1,12 @@
 import { FormComponent } from "./components/formComponent";
-import type { ClientInformations, FlightInformation, PaymentInformations } from "./data/Types";
-import type { Component } from "./lib/component";
+import { pagesItems } from "./data/data";
+import type {
+  ClientInformations,
+  FlightInformation,
+  PageItem,
+  PageLabel,
+  PaymentInformations,
+} from "./data/Types";
 
 export class AppManager {
   private static _instance: AppManager;
@@ -9,11 +15,11 @@ export class AppManager {
   public paymentInformations: PaymentInformations | undefined;
   public flightInformation: FlightInformation | undefined;
 
-  private currentPage: Component;
+  private currentPage: PageItem | undefined;
 
   private constructor() {
-    this.currentPage = new FormComponent();
-    this.displayPage();
+    console.log("app init");
+    this.openPageOnInit();
   }
 
   public static getInstance(): AppManager {
@@ -23,22 +29,39 @@ export class AppManager {
     return this._instance;
   }
 
-  public changePage(component: Component) {
-    this.currentPage = component;
+  private openPageOnInit = () => {
+    const currentPath = window.location.pathname.split("/")[1];
+    const pageItem = pagesItems.find((e) => e.label === currentPath);
+    if (pageItem) {
+      this.changePage(currentPath as PageLabel);
+    } else if (currentPath === "") {
+      this.changePage("home");
+    } else {
+      this.changePage("not-found");
+    }
+  };
+
+  public changePage(label: PageLabel) {
+    let page = pagesItems.find((i) => i.label === label);
+    if (!page) {
+      page = pagesItems.find((i) => i.label === "not-found");
+    }
+    this.currentPage = page;
+
+    history.pushState({}, "", `/${this.currentPage?.label}`);
     this.displayPage();
   }
 
   private displayPage() {
-    if (this.currentPage.content) {
+    if (this.currentPage) {
+      const component = this.currentPage.pageConstructor();
+      if (!component || !component.content) return;
       const app = document.getElementById("app");
       if (!app) return;
       app.innerHTML = "";
-      app.appendChild(this.currentPage.content);
+      app.appendChild(component.content);
     } else {
-      console.log(
-        "Erreur du chargement de la page, contenu supposé etre chargé:",
-        this.currentPage.content
-      );
+      console.log("Erreur du chargement de la page, contenu supposé etre chargé:");
     }
   }
 }

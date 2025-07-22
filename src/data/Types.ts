@@ -1,3 +1,5 @@
+import type { Component } from "../lib/component";
+
 export type CityLabel =
   | "Paris"
   | "Londres"
@@ -65,4 +67,11 @@ export type FlightInformation = {
   standing: StandingValue;
   originCity: CityValue;
   destinationCity: CityValue;
+};
+
+export type PageLabel = "home" | "form" | "payment" | "history" | "not-found";
+
+export type PageItem = {
+  label: PageLabel;
+  pageConstructor: () => Component;
 };
