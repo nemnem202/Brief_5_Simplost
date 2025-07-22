@@ -3,6 +3,7 @@ import { HomeComponent } from "../components/homeComponent";
 import { HistoryComponent } from "../components/historyComponent";
 import { NotFoundComponent } from "../components/notFoundComponent";
 import type { Destination, PageItem, Standing } from "./Types";
+import { PaymentComponent } from "../components/PaymentComponent";
 
 export const destinations: Destination[] = [
   { label: "Paris", value: "paris", distanceFromParis: 0 },
@@ -46,6 +47,10 @@ export const pagesItems: PageItem[] = [
   {
     label: "form",
     pageConstructor: () => new FormComponent(),
+  },
+  {
+    label: "payment",
+    pageConstructor: () => new PaymentComponent(),
   },
     {
     label: "history",
