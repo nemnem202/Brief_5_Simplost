@@ -1,4 +1,3 @@
-import { FormComponent } from "./components/formComponent";
 import { pagesItems } from "./data/data";
 import type {
   ClientInformations,
@@ -20,6 +19,10 @@ export class AppManager {
   private constructor() {
     console.log("app init");
     this.openPageOnInit();
+    window.addEventListener("popstate", () => {
+      const path = window.location.pathname.replace("/", "") as PageLabel;
+      AppManager.getInstance().navigate(path);
+    });
   }
 
   public static getInstance(): AppManager {
@@ -49,6 +52,16 @@ export class AppManager {
     this.currentPage = page;
 
     history.pushState({}, "", `/${this.currentPage?.label}`);
+    this.displayPage();
+  }
+
+  private navigate(label: PageLabel) {
+    let page = pagesItems.find((i) => i.label === label);
+    if (!page) {
+      page = pagesItems.find((i) => i.label === "not-found");
+    }
+    this.currentPage = page;
+
     this.displayPage();
   }
 
