@@ -1,31 +1,34 @@
-
-
 .container {
   max-width: 800px;
   margin: auto;
   padding: 40px 20px;
   background-color: rgba(255, 255, 255, 0.7);
   border-radius: 10px;
+  font-family: var(--main-font);
+  color: var(--on-background);
 }
 
 h2 {
   text-align: center;
-  color: #2c2c7a;
+  color: var(--darker-primary);
   margin-bottom: 40px;
+  font-size: var(--large-text-size);
 }
 
 .travel-info h3 {
   font-weight: bold;
+  font-size: var(--body-text-size);
+  color: var(--on-background);
 }
 
 .card {
   display: flex;
   justify-content: space-between;
-  border: 1px solid #333;
+  border: 1px solid var(--grey);
   border-radius: 6px;
   margin: 20px 0;
   padding: 20px;
-  background-color: #f9f9f9;
+  background-color: var(--on-surface);
 }
 
 .card .left,
@@ -51,12 +54,12 @@ h2 {
 .section-title {
   color: red;
   font-weight: bold;
-  font-size: 18px;
+  font-size: var(--large-text-size);
 }
 
 .no-booking {
   color: red;
-  font-size: 16px;
+  font-size: var(--body-text-size);
   margin-top: 10px;
 }
 
@@ -67,10 +70,16 @@ h2 {
 
 .home-button a {
   display: inline-block;
-  background-color: #6c63ff;
-  color: white;
+  background-color: var(--primary);
+  color: var(--on-surface);
   padding: 10px 20px;
   border-radius: 20px;
   text-decoration: none;
-  font-weight: bold;
+  font-weight: 700;
+  font-size: var(--button-text-size);
+  transition: background-color 0.3s ease;
+}
+
+.home-button a:hover {
+  background-color: var(--darker-primary);
 }
