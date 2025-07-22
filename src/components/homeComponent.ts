@@ -15,7 +15,7 @@ export class HomeComponent extends Component {
     setTimeout(() => {
       document.getElementById("emptyFormButton")?.addEventListener("click", () => {
         AppManager.getInstance().flightInformation = undefined;
-        AppManager.getInstance().changePage(new FormComponent());
+        AppManager.getInstance().changePage("form");
       });
 
       document.getElementById("parisLisbon")?.addEventListener("click", () => {
@@ -30,7 +30,7 @@ export class HomeComponent extends Component {
           standing: "economy",
           date: date,
         };
-        AppManager.getInstance().changePage(new FormComponent());
+        AppManager.getInstance().changePage("form");
       });
 
       document.getElementById("parisRome")?.addEventListener("click", () => {
@@ -45,7 +45,7 @@ export class HomeComponent extends Component {
           standing: "economy",
           date: date,
         };
-        AppManager.getInstance().changePage(new FormComponent());
+        AppManager.getInstance().changePage("form");
       });
 
       document.getElementById("parisAmsterdam")?.addEventListener("click", () => {
@@ -60,7 +60,7 @@ export class HomeComponent extends Component {
           standing: "economy",
           date: date,
         };
-        AppManager.getInstance().changePage(new FormComponent());
+        AppManager.getInstance().changePage("form");
       });
     }, 0);
   }
