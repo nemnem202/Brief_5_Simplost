@@ -39,6 +39,8 @@ export class AppManager {
       this.changePage(currentPath as PageLabel);
     } else if (currentPath === "") {
       this.changePage("home");
+    } else if (currentPath === "history") { //to keep ??
+      this.changePage("history");
     } else {
       this.changePage("not-found");
     }

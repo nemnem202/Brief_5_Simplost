@@ -8,11 +8,7 @@ export abstract class Component {
     if (realTemplate){
       this.content = realTemplate.content.cloneNode(true) as HTMLElement;
     }
-    this.addTemplate()    
   }
 
-    protected addTemplate(){
-    
-  }
 
 }

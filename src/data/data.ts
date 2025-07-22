@@ -1,5 +1,6 @@
 import { FormComponent } from "../components/formComponent";
 import { HomeComponent } from "../components/homeComponent";
+import { HistoryComponent } from "../components/historyComponent";
 import { NotFoundComponent } from "../components/notFoundComponent";
 import type { Destination, PageItem, Standing } from "./Types";
 
@@ -45,6 +46,10 @@ export const pagesItems: PageItem[] = [
   {
     label: "form",
     pageConstructor: () => new FormComponent(),
+  },
+    {
+    label: "history",
+    pageConstructor: () => new (HistoryComponent),
   },
   {
     label: "not-found",

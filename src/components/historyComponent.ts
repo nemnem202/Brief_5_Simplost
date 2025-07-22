@@ -6,7 +6,7 @@ import templateHTML from "../componentsTemplates/historyComponent.html?raw";
 
 // const DOM_history = document.querySelector("#historyTemplate")
 
-export class historyComponent extends Component {
+export class HistoryComponent extends Component {
   constructor() {
     super(templateHTML);
     
