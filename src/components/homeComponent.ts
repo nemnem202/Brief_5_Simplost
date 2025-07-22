@@ -2,7 +2,6 @@ import { Component } from "../lib/component";
 import templateHTML from "../componentsTemplates/homeComponent.html?raw";
 import "../componentsStyleSheets/homeComponent.css";
 import { AppManager } from "../appManager";
-import { FormComponent } from "./formComponent";
 
 export class HomeComponent extends Component {
   constructor() {
