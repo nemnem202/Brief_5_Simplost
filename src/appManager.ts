@@ -55,7 +55,7 @@ export class AppManager {
     const pageItem = pagesItems.find((e) => e.label === currentPath);
     if (pageItem) {
       this.changePage(currentPath as PageLabel);
-    } else if (pageItem === "") {
+    } else if (currentPath === "") {
       this.changePage("home");
     } else {
       this.changePage("not-found");
