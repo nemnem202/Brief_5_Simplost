@@ -1,5 +1,5 @@
 import { Component } from "../lib/component";
-import type { ClientInformations, FlightInformation } from "../data/Types";
+import type { ClientInformations, FlightInformation, PaymentInformations } from "../data/Types";
 import { AppManager } from "../appManager";
 import templateHTML from "../componentsTemplates/paymentComponent.html?raw";
 
@@ -9,10 +9,14 @@ export class PaymentComponent extends Component {
 
   constructor() {
     super(templateHTML);
+    setTimeout(() => this.init(), 0);
+  }
+
+  private init(){
     this.clientData = AppManager.getInstance().clientInformations;
     this.travelData = AppManager.getInstance().flightInformation;
     this.fillTravelInfos();
-    setTimeout(() => this.addInputListeners(), 0);
+    this.addListeners();
   }
 
   private fillTravelInfos(){
@@ -44,45 +48,58 @@ export class PaymentComponent extends Component {
     htmlElement.appendChild(p);
   }
 
-  private addInputListeners(){
+  private addListeners(){
     const cardName = document.getElementById("cardName");
     if(cardName){
-      cardName.addEventListener("blur", this.cardNameChecker);
+      cardName.addEventListener("blur", this.inputedNameChecker);
     }
 
     const cardNumber = document.getElementById("cardNumber");
     if(cardNumber){
-      cardNumber.addEventListener("blur", this.cardNumberChecker);
+      cardNumber.addEventListener("blur", this.inputedNumberChecker);
       cardNumber.addEventListener("input", this.cardNumberInput);
     }
 
     const cardCVV = document.getElementById("cardCvv");
     if(cardCVV){
-      cardCVV.addEventListener("blur", this.cardCVVChecker);
+      cardCVV.addEventListener("blur", this.inputedCVVChecker);
       cardCVV.addEventListener("input", this.cardCVVInput);
     }
 
     const cardExpiry = document.getElementById("cardExpiry");
     if(cardExpiry){
-      cardExpiry.addEventListener("blur", this.cardExpiryChecker);
+      cardExpiry.addEventListener("blur", this.inputedExpiryChecker);
       cardExpiry.addEventListener("input", this.cardExpiryInput);
+    }
+
+    const form = document.getElementById("paymentForm");
+    if(form){
+      form.addEventListener("submit", (event) => this.pay(event));
     }
   }
 
-  private cardNumberChecker = (event: FocusEvent) =>{
+  private inputedNumberChecker = (event: FocusEvent) =>{
+    if(event.target instanceof HTMLInputElement){
+      this.numberChecker(event.target.value);
+    }
+  }
+
+  private numberChecker(num: string): boolean{
     const numberRegex: RegExp = /^[0-9]{12,19}$/;
     const errorPar = document.getElementById("cardNumberError");
-    if(event.target instanceof HTMLInputElement && errorPar){
-      let number = event.target.value;
-      number = number.replaceAll("-", "");
-      number = number.replaceAll(" ", "");
-      if(!numberRegex.test(number) || !this.checkLuhnAlgorithm(number)){
+    if(errorPar){
+      num = num.replaceAll("-", "");
+      num = num.replaceAll(" ", "");
+      if(!numberRegex.test(num) || !this.checkLuhnAlgorithm(num)){
         errorPar.innerText = "The card number is invalid" ;
+        return false;
       }
       else{
         errorPar.innerText = "";
+        return true;
       }
     }
+    return false;
   }
 
   private checkLuhnAlgorithm(numberToCheck: string): boolean{
@@ -115,32 +132,50 @@ export class PaymentComponent extends Component {
     }
   }
 
-  private cardNameChecker(event: FocusEvent){
-    // The regex accept all letters, all accentuated letters, spaces, hyphens and apostrophes
-    const nameRegex: RegExp = /^[a-zà-öø-ÿñ'\- ]{1,}( [a-zà-öø-ÿñ'\- ]{1,})+$/;
-    const errorPar = document.getElementById("cardNameError");
-    if(event.target instanceof HTMLInputElement && errorPar){
-      const name = event.target.value;
-      if(!nameRegex.test(name.toLowerCase())){
-        errorPar.innerText = "The name is invalid." ;
-      }
-      else{
-        errorPar.innerText = "";
-      }
+  private inputedNameChecker = (event: FocusEvent) => {
+    if(event.target instanceof HTMLInputElement){
+      this.nameChecker(event.target.value);
     }
   }
 
-  private cardCVVChecker(event: FocusEvent){
-    const cvvRegex: RegExp = /^[0-9]{3,4}$/;
-    const errorPar = document.getElementById("cardCvvError");
-    if(event.target instanceof HTMLInputElement && errorPar){
-      if(!cvvRegex.test(event.target.value)){
-        errorPar.innerText = "The CVV is invalid" ;
+  private nameChecker(name: string): boolean{
+    // The regex accept all letters, all accentuated letters, spaces, hyphens and apostrophes
+    const nameRegex: RegExp = /^[a-zà-öø-ÿñ'\- ]{1,}( [a-zà-öø-ÿñ'\- ]{1,})+$/;
+
+    const errorPar = document.getElementById("cardNameError");
+    if(errorPar){
+      if(!nameRegex.test(name.toLowerCase())){
+        errorPar.innerText = "The name is invalid." ;
+        return false;
       }
       else{
         errorPar.innerText = "";
+        return true;
       }
     }
+    return false;
+  }
+
+  private inputedCVVChecker = (event: FocusEvent) => {
+    if(event.target instanceof HTMLInputElement){
+      this.cvvChecker(event.target.value)
+    }
+  }
+
+  private cvvChecker(cvv: string): boolean{
+    const cvvRegex: RegExp = /^[0-9]{3,4}$/;
+    const errorPar = document.getElementById("cardCvvError");
+    if(errorPar){
+      if(!cvvRegex.test(cvv)){
+        errorPar.innerText = "The CVV is invalid" ;
+        return false;
+      }
+      else{
+        errorPar.innerText = "";
+        return true;
+      }
+    }
+    return false;
   }
 
   private cardCVVInput(event: Event){
@@ -154,15 +189,21 @@ export class PaymentComponent extends Component {
     }
   }
 
-  private cardExpiryChecker(event: FocusEvent){
+  private inputedExpiryChecker = (event: FocusEvent) => {
+    if(event.target instanceof HTMLInputElement){
+      this.expiryChecker(event.target.value);
+    }
+  }
+
+  private expiryChecker(expiry: string): boolean{
     const curDate: Date = new Date();
     const curMonth: number = curDate.getMonth();
     const curYear: number = curDate.getFullYear();
 
     const errorPar = document.getElementById("cardExpiryError");
-    if(event.target instanceof HTMLInputElement && errorPar){
-      const cardMonth: number = parseInt(event.target.value.slice(0,2));
-      let year: string = event.target.value.slice(3);
+    if(errorPar){
+      const cardMonth: number = parseInt(expiry.slice(0,2));
+      let year: string = expiry.slice(3);
       if(year.length === 2){
         year = "20" + year;
       }
@@ -170,15 +211,18 @@ export class PaymentComponent extends Component {
       const cardYear: number = parseInt(year);
       if(year.length != 4 || cardMonth > 12 || cardMonth < 1){
         errorPar.innerText = "The date format is invalid" ;
-        return;
+        return false;
       }
-      else if(cardYear < curYear|| (cardYear === curYear && cardMonth+1 < curMonth)){
+      else if(cardYear < curYear|| (cardYear === curYear && cardMonth-1 < curMonth)){
         errorPar.innerText = "The card is expired" ;
+        return false
       }
       else{
         errorPar.innerText = "";
+        return true;
       }
     }
+    return false;
   }
 
   private cardExpiryInput(event: Event){
@@ -196,5 +240,77 @@ export class PaymentComponent extends Component {
         event.target.value = event.target.value.slice(0,lastCharNum);
       }
     }
+  }
+
+  private pay (event: SubmitEvent) {
+    event.preventDefault();
+    let isFormValid = true;
+
+    if(event.target instanceof HTMLFormElement){
+      const formData = new FormData(event.target)
+      const paymentData = {
+        cardNumber: formData.get("cardNumber"),
+        cvv: formData.get("cardCvv"),
+        dateOfExpiry: {
+          year: formData.get("cardExpiry")?.slice(3),
+          month: formData.get("cardExpiry")?.slice(0,2)
+        },
+        fullName: formData.get("cardName")
+      };
+
+      if(typeof paymentData.cardNumber === "string" && !this.numberChecker(paymentData.cardNumber)){
+        isFormValid = false;
+      }
+      if(typeof paymentData.fullName === "string" && !this.nameChecker(paymentData.fullName)){
+        isFormValid = false;
+      }
+      if(typeof paymentData.cvv === "string" && !this.cvvChecker(paymentData.cvv)){
+        isFormValid = false;
+      }
+      if(typeof paymentData.dateOfExpiry.month === "string" && typeof paymentData.dateOfExpiry.year === "string" && !this.expiryChecker(paymentData.dateOfExpiry.month+"/"+paymentData.dateOfExpiry.year)){
+        isFormValid = false;
+      }
+
+      if(isFormValid){
+        this.fillLocalStorage();
+
+        if(paymentData.cardNumber && paymentData.cvv && paymentData.fullName && paymentData.dateOfExpiry.month && paymentData.dateOfExpiry.year){
+          const payment: PaymentInformations = {
+            cardNumber: paymentData.cardNumber.toString(),
+            cvv: paymentData.cvv.toString(),
+            dateOfExpiry: {
+              year: paymentData.dateOfExpiry.year.toString(),
+              month: paymentData.dateOfExpiry.month.toString()
+            },
+            fullName: paymentData.fullName.toString()
+          }
+          AppManager.getInstance().paymentInformations = payment;
+        }
+
+        AppManager.getInstance().changePage("history");
+      }
+    }
+  }
+
+  private fillLocalStorage(){
+    const flightData = localStorage.getItem("flights");
+    let flights: FlightInformation[] = [];
+    if (flightData) {
+      flights = JSON.parse(flightData) as FlightInformation[];
+    }
+    if(this.travelData){
+      flights.push(this.travelData);
+    }
+    localStorage.setItem("flights", JSON.stringify(flights));
+
+    const clientData = localStorage.getItem("clients");
+    let clients: ClientInformations[] = [];
+    if (clientData) {
+      clients = JSON.parse(clientData) as ClientInformations[];
+    }
+    if(this.clientData){
+      clients.push(this.clientData);
+    }
+    localStorage.setItem("clients", JSON.stringify(clients));
   }
 }
