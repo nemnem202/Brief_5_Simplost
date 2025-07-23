@@ -1,4 +1,8 @@
-import type { Destination, Standing } from "./Types";
+import { FormComponent } from "../components/formComponent";
+import { HomeComponent } from "../components/homeComponent";
+import { HistoryComponent } from "../components/historyComponent";
+import { NotFoundComponent } from "../components/notFoundComponent";
+import type { Destination, PageItem, Standing } from "./Types";
 
 export const destinations: Destination[] = [
   { label: "Paris", value: "paris", distanceFromParis: 0 },
@@ -31,5 +35,24 @@ export const standing: Standing[] = [
     value: "first",
     pricePerKm: 0.5,
     perks: ["Chauffeur", "Service à la place", "Champagne", "Siège premium"],
+  },
+];
+
+export const pagesItems: PageItem[] = [
+  {
+    label: "home",
+    pageConstructor: () => new HomeComponent(),
+  },
+  {
+    label: "form",
+    pageConstructor: () => new FormComponent(),
+  },
+    {
+    label: "history",
+    pageConstructor: () => new (HistoryComponent),
+  },
+  {
+    label: "not-found",
+    pageConstructor: () => new NotFoundComponent(),
   },
 ];
