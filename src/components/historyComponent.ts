@@ -24,6 +24,9 @@ export class HistoryComponent extends Component {
           tic.innerHTML = "";
         }
       }
+      const homeButton = document.getElementById("home-button-container");
+      homeButton?.appendChild(createButton("Go Back to Home Page", "home-button", ()=>AppManager.getInstance().changePage("home")  ))
+
     }, 0);
   }
 }
