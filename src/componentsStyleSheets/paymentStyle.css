@@ -62,12 +62,15 @@
     justify-content: space-between;
     gap: 8px;
     font-weight: 600;
-    text-decoration: underline;
 }
 
-.payment-return-link{
-    display: flex;
-    gap: 4px;
+.payment-return-btn{
+    text-decoration: underline;
+    font-size: var(--body-text-size);
+    text-align: left;
+    color: var(--darker-primary);
+    background: none;
+    border: none;
 }
 
 .payment-arrow-icon{
@@ -107,4 +110,9 @@
 .payment-consent{
     display: flex;
     gap: 8px;
+}
+
+.error-message{
+    color: #FF2C2C;
+    font-size: var(--body-text-size);
 }

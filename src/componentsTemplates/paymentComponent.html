@@ -20,19 +20,20 @@
           facilisis et semper.
         </p>
         <div class="payment-checking">
-          <div class="payment-return-link">
-            <a id="returnToForm">Edit Personal Details</a>
-          </div>
-          <div class="payment-consent">
-            <input type="checkbox" name="consent" id="consent" />
-            <label for="consent">I accept the Terms & Conditions</label>
+          <button id="returnToForm" class="payment-return-btn">Edit Personal Details</button>
+          <div>
+            <div class="payment-consent">
+              <input type="checkbox" name="consent" id="consent" />
+              <label for="consent">I accept the Terms & Conditions</label>
+            </div>
+            <p id="consentError" class="error-message"></p>
           </div>
         </div>
       </div>
     </section>
     <section class="payment-section">
       <h2 class="payment-title">Add your card details </h2>
-      <form class="payment-form">
+      <form class="payment-form" id="paymentForm">
         <div class="payment-info">
           <label for="cardName">Full Name *</label>
           <input
@@ -42,6 +43,7 @@
             placeholder="John Doe"
             required
           />
+          <p id="cardNameError" class="error-message"></p>
         </div>
         <div class="payment-info">
           <label for="cardNumber">Card Number *</label>
@@ -52,6 +54,7 @@
             placeholder="XXXX-XXXX-XXXX-XXXX"
             required
           />
+          <p id="cardNumberError" class="error-message"></p>
         </div>
         <div class="payment-info-line">
           <div class="payment-info">
@@ -63,10 +66,12 @@
               placeholder="MM/YYYY"
               required
             />
+            <p id="cardExpiryError" class="error-message"></p>
           </div>
           <div class="payment-info">
             <label for="cardCvv">CVV *</label>
             <input type="text" name="cardCVV" id="cardCvv" required />
+            <p id="cardCvvError" class="error-message"></p>
           </div>
         </div>
         <button class="button" type="submit" id="payBtn">
