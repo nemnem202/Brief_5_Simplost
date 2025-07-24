@@ -13,7 +13,5 @@ document.getElementById("home-button-header")?.addEventListener("click", () => {
         AppManager.getInstance().changePage("history");
     });
 
-AppManager.getInstance().changePage("home")
-
-
+AppManager.getInstance()
 

@@ -32,15 +32,15 @@ export class AppManager {
     return this._instance;
   }
 
-  private openPageOnInit = () => {
+  openPageOnInit = () => {
     const currentPath = window.location.pathname.split("/")[1];
     const pageItem = pagesItems.find((e) => e.label === currentPath);
     if (pageItem) {
       this.changePage(currentPath as PageLabel);
     } else if (currentPath === "") {
       this.changePage("home");
-    } else if (currentPath === "history") { //to keep ??
-      this.changePage("history");
+    // } else if (currentPath === "history") { //to keep ??
+    //   this.changePage("history");
     } else {
       this.changePage("not-found");
     }
