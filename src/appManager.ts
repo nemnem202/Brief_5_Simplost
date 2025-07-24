@@ -18,10 +18,28 @@ export class AppManager {
 
   private constructor() {
     console.log("app init");
+
     this.openPageOnInit();
+
     window.addEventListener("popstate", () => {
       const path = window.location.pathname.replace("/", "") as PageLabel;
       AppManager.getInstance().navigate(path);
+    });
+
+    this.addHeaderListeners();
+  }
+
+  private addHeaderListeners() {
+    document.getElementById("header-logo")?.addEventListener("click", () => {
+      AppManager.getInstance().changePage("home");
+    });
+
+    document.getElementById("book-button-header")?.addEventListener("click", () => {
+      AppManager.getInstance().changePage("form");
+    });
+
+    document.getElementById("history-button-header")?.addEventListener("click", () => {
+      AppManager.getInstance().changePage("history");
     });
   }
 
@@ -39,8 +57,6 @@ export class AppManager {
       this.changePage(currentPath as PageLabel);
     } else if (currentPath === "") {
       this.changePage("home");
-    // } else if (currentPath === "history") { //to keep ??
-    //   this.changePage("history");
     } else {
       this.changePage("not-found");
     }
