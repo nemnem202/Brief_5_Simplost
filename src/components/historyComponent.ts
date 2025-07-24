@@ -43,7 +43,7 @@ export class HistoryComponent extends Component {
 
         const spanArray: HTMLElement[] = [];
 
-        const changeSpan = (spanID: keyof FlightInformation) => {
+        const changeSpanFI = (spanID: keyof FlightInformation) => {
           const span: HTMLElement | null = document.getElementById(spanID);
 
           if (span && this.flightInformation) {
@@ -51,12 +51,25 @@ export class HistoryComponent extends Component {
             spanArray.push(span);
           }
         };
+        const changeSpanCI = (spanID: keyof ClientInformations) => {
+          const span: HTMLElement | null = document.getElementById(spanID);
 
-        changeSpan("originCity");
-        changeSpan("destinationCity");
-        changeSpan("price");
-        changeSpan("standing");
-        changeSpan("date");
+          if (span && this.clientInformation) {
+            span.innerText = this.clientInformation[spanID] + "";
+            spanArray.push(span);
+          }
+        };
+
+        changeSpanFI("originCity");
+        changeSpanFI("destinationCity");
+        changeSpanFI("price");
+        changeSpanFI("standing");
+        changeSpanFI("date");
+
+        changeSpanCI("name");
+        changeSpanCI("lastName");
+        changeSpanCI("email");
+        changeSpanCI("phoneNumber");
 
         if (this.flightInformation) {
           const standingPlace = standing.find(
