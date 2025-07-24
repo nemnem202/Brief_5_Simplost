@@ -3,6 +3,7 @@ import { Component } from "../lib/component";
 import createButton from "../utils/button";
 import templateHTML from "../componentsTemplates/historyComponent.html?raw";
 import type { ClientInformations, FlightInformation } from "../data/Types";
+import { standing } from "../data/data";
 
 export class HistoryComponent extends Component {
   flightInformation: FlightInformation | undefined;
@@ -10,6 +11,8 @@ export class HistoryComponent extends Component {
 
   constructor() {
     super(templateHTML);
+
+    //to delete
 
     setTimeout(
       () => {
@@ -21,11 +24,9 @@ export class HistoryComponent extends Component {
           originCity: "paris",
           destinationCity: "lisbon",
           price: 33,
-          standing: "economy",
+          standing: "buisness",
           date: date,
         };
-
-        
       },
 
       0
@@ -37,26 +38,41 @@ export class HistoryComponent extends Component {
 
       const tic = document.getElementById("travel-info-container");
 
-      if (this.flightInformation) { // && this.clientInformation
+      if (this.flightInformation) {
+        // && this.clientInformation
 
-        const spanArray : HTMLElement[]= []
-    
-        const changeSpan = (spanID: keyof FlightInformation) => 
-        {
-          const span: HTMLElement | null =document.getElementById(spanID)
+        const spanArray: HTMLElement[] = [];
 
-          if (span && this.flightInformation)
-          {
-            span.innerText = this.flightInformation[spanID]+''
-            spanArray.push(span)
+        const changeSpan = (spanID: keyof FlightInformation) => {
+          const span: HTMLElement | null = document.getElementById(spanID);
+
+          if (span && this.flightInformation) {
+            span.innerText = this.flightInformation[spanID] + "";
+            spanArray.push(span);
+          }
+        };
+
+        changeSpan("originCity");
+        changeSpan("destinationCity");
+        changeSpan("price");
+        changeSpan("standing");
+        changeSpan("date");
+
+        if (this.flightInformation) {
+          const standingPlace = standing.find(
+            (std) => std.value == this.flightInformation?.standing
+          );
+
+          const perksUl = document.getElementById("perks");
+          if (standingPlace && perksUl) {
+            standingPlace.perks.forEach((perk) => {
+              const li = document.createElement("li");
+              li.textContent = perk;
+              perksUl.appendChild(li);
+              //todo
+            });
           }
         }
-
-        changeSpan("originCity")
-        changeSpan("destinationCity")
-        changeSpan("price")
-        changeSpan("standing")
-        changeSpan("date")
 
         //todo  addclass service included
       } else {
