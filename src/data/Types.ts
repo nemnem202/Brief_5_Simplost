@@ -69,6 +69,15 @@ export type FlightInformation = {
   destinationCity: CityValue;
 };
 
+export type FlightInformationRaw = {
+  date: string; //  string au lieu de Date
+  price: number;
+  standing: StandingValue;
+  originCity: CityValue;
+  destinationCity: CityValue;
+};
+
+
 export type PageLabel = "home" | "form" | "payment" | "history" | "not-found";
 
 export type PageItem = {

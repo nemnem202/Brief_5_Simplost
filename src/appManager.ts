@@ -50,7 +50,7 @@ export class AppManager {
     return this._instance;
   }
 
-  private openPageOnInit = () => {
+  openPageOnInit = () => {
     const currentPath = window.location.pathname.split("/")[1];
     const pageItem = pagesItems.find((e) => e.label === currentPath);
     if (pageItem) {
