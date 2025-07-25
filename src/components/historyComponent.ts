@@ -4,6 +4,7 @@ import createButton from "../utils/button";
 import templateHTML from "../componentsTemplates/historyComponent.html?raw";
 import type { ClientInformations, FlightInformation } from "../data/Types";
 import { standing } from "../data/data";
+import { json } from "react-router-dom";
 
 export class HistoryComponent extends Component {
   flightInformation: FlightInformation | undefined;
@@ -12,25 +13,6 @@ export class HistoryComponent extends Component {
   constructor() {
     super(templateHTML);
 
-    //to delete
-
-    setTimeout(
-      () => {
-        const date = new Date();
-        date.setMonth(8);
-        date.setDate(12);
-
-        AppManager.getInstance().flightInformation = {
-          originCity: "paris",
-          destinationCity: "lisbon",
-          price: 33,
-          standing: "buisness",
-          date: date,
-        };
-      },
-
-      0
-    );
 
     setTimeout(() => {
       this.flightInformation = AppManager.getInstance().flightInformation;
@@ -38,9 +20,8 @@ export class HistoryComponent extends Component {
 
       const tic = document.getElementById("travel-info-container");
 
-      if (this.flightInformation) {
-        // && this.clientInformation
-
+      if (this.flightInformation && this.clientInformation )
+         {
         const spanArray: HTMLElement[] = [];
 
         const changeSpanFI = (spanID: keyof FlightInformation) => {
