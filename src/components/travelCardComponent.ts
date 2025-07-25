@@ -8,7 +8,7 @@ export class travelCardComponent extends Component {
   flightInformation;
   clientInformation;
   id;
-  idTarget
+  idTarget;
 
   constructor(
     idTarget: string,
@@ -17,34 +17,19 @@ export class travelCardComponent extends Component {
   ) {
     super(template);
 
-    this.idTarget = idTarget
+    this.idTarget = idTarget;
     this.flightInformation = pFlightInformation;
     this.clientInformation = pClientInformation;
     this.id = Math.floor(Math.random() * 1000000000);
 
-    this.chargingData()
-
-
+    this.chargingData();
+    this.displayComp(this.idTarget);
   }
 
-  private chargingData () {
-
-  setTimeout (()=>{
-
-
-    console.log(" travel cardinit");
-    console.log(this.id);
-
-    // const spanArray: HTMLElement[] = [];
-
-    const spanBookingNumber: HTMLElement | null =
-      this.getAndChangeID("bookingNumber");
-
-    // const spanBookingNumber: HTMLElement | null = document.getElementById("bookingNumber");
-
+  private chargingData() {
+    const spanBookingNumber = this.getAndChangeID("bookingNumber");
     if (spanBookingNumber) {
       spanBookingNumber.innerText = this.id + "";
-      // spanArray.push(span);
     }
 
     this.changeSpanFI("originCity");
@@ -60,12 +45,10 @@ export class travelCardComponent extends Component {
 
     if (this.flightInformation) {
       const standingPlace = standing.find(
-        (std) => std.value == this.flightInformation?.standing
+        (std) => std.value === this.flightInformation.standing
       );
 
-      // const perksUl = document.getElementById("perks");
-      const perksUl: HTMLElement | null = this.getAndChangeID("perks");
-
+      const perksUl = this.getAndChangeID("perks");
       if (standingPlace && perksUl) {
         perksUl.id = this.id + "perks";
         standingPlace.perks.forEach((perk) => {
@@ -75,61 +58,42 @@ export class travelCardComponent extends Component {
         });
       }
     }
-
-    this.displayComp(this.idTarget);
-
-
-
-  }),0
-
-
-
   }
 
   private displayComp(idTarget: string) {
     const target = document.getElementById(idTarget);
-
     if (target && this.content) {
       target.appendChild(this.content);
     } else {
-      console.log(target);
+      console.warn("Target not found for travel card:", idTarget);
     }
   }
 
   private changeSpanFI(spanID: keyof FlightInformation) {
-    // const span: HTMLElement | null = document.getElementById(spanID);
-    const span: HTMLElement | null = this.getAndChangeID(spanID);
-
+    const span = this.getAndChangeID(spanID);
     if (span && this.flightInformation) {
-      // span.id = this.id + spanID;
-      span.innerText = this.flightInformation[spanID] + "";
-      // spanArray.push(span);
+      span.innerText = String(this.flightInformation[spanID]);
     }
   }
 
   private changeSpanCI(spanID: keyof ClientInformations) {
-    // const span: HTMLElement | null = document.getElementById(spanID);
-    const span: HTMLElement | null = this.getAndChangeID(spanID);
-
+    const span = this.getAndChangeID(spanID);
     if (span && this.clientInformation) {
-      // span.id = this.id + spanID;
-      span.innerText = this.clientInformation[spanID] + "";
-      // spanArray.push(span);
+      span.innerText = String(this.clientInformation[spanID]);
     }
   }
 
-  private getAndChangeID(oldID: string) {
-    const tempDOM = document.getElementById(oldID);
-    const newID = oldID + "_" + this.id;
-    if (tempDOM) {
-      tempDOM.id = newID;
-      // setTimeout(()=> {return document.getElementById(newID)},0
-
-      // )
-
-      return document.getElementById(newID);
-    } else {
-      return null;
+  private getAndChangeID(oldID: string): HTMLElement | null {
+    if (this.content) {
+      const tempDOM = this.content.querySelector(
+        `#${oldID}`
+      ) as HTMLElement | null;
+      const newID = `${oldID}_${this.id}`;
+      if (tempDOM) {
+        tempDOM.id = newID;
+        return tempDOM;
+      }
     }
+    return null;
   }
 }
