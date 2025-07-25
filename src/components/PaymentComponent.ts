@@ -17,6 +17,9 @@ export class PaymentComponent extends Component {
   private init(){
     this.clientData = AppManager.getInstance().clientInformations;
     this.travelData = AppManager.getInstance().flightInformation;
+    if(!this.travelData || !this.clientData){
+      AppManager.getInstance().changePage("not-found");
+    }
     this.fillTravelInfos();
     this.addListeners();
   }
