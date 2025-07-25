@@ -6,9 +6,11 @@ import templateHTML from "../componentsTemplates/paymentComponent.html?raw";
 export class PaymentComponent extends Component {
   private clientData: ClientInformations | undefined;
   private travelData: FlightInformation | undefined;
+  private expiryValue: string;
 
   constructor() {
     super(templateHTML);
+    this.expiryValue = "";
     setTimeout(() => this.init(), 0);
   }
 
@@ -21,21 +23,21 @@ export class PaymentComponent extends Component {
 
   private fillTravelInfos(){
     if(this.content && this.clientData && this.travelData){
-      const divClientInfos: HTMLElement | null = this.content.querySelector("div#clientInfos");
+      const divClientInfos: HTMLElement | null = document.getElementById("clientInfos");
       if(divClientInfos){
         this.addTextToHTMLElement(divClientInfos,`${this.clientData.name} ${this.clientData.lastName}`);
         this.addTextToHTMLElement(divClientInfos,this.clientData.email);
         this.addTextToHTMLElement(divClientInfos,this.clientData.phoneNumber);
       }
 
-      const divTravelInfos: HTMLElement | null = this.content.querySelector("div#travelInfos");
+      const divTravelInfos: HTMLElement | null = document.getElementById("travelInfos");
       if(divTravelInfos){
         this.addTextToHTMLElement(divTravelInfos,`Location: ${this.travelData.originCity} - ${this.travelData.destinationCity}`);
         this.addTextToHTMLElement(divTravelInfos,`Date: ${this.travelData.date.toDateString()}`);
         this.addTextToHTMLElement(divTravelInfos,`Class: ${this.travelData.standing} class`);
       }
 
-      const divPrice: HTMLElement | null = this.content.querySelector("div#price");
+      const divPrice: HTMLElement | null = document.getElementById("price");
       if(divPrice){
         this.addTextToHTMLElement(divPrice,`Price: ${this.travelData.price.toString()} €`);
       }
@@ -238,18 +240,33 @@ export class PaymentComponent extends Component {
 
   private cardExpiryInput(event: Event){
     if(event.target instanceof HTMLInputElement){
-      const lastCharNum: number = event.target.value.length-1;
-      const lastInput: string = event.target.value.charAt(lastCharNum);
+      if(!this.expiryValue){
+        this.expiryValue = "";
+      }
+      let currentValue: string = event.target.value;
+      const lastCharNum: number = currentValue.length-1;
+      const lastInput: string = currentValue.charAt(lastCharNum);
 
       if(!/[0-9]/.test(lastInput)){
-        event.target.value = event.target.value.slice(0,lastCharNum);
+        currentValue = currentValue.slice(0, lastCharNum);
       }
-      if(event.target.value.length === 2){
-        event.target.value = event.target.value + "/";
+
+      const isAdding = currentValue.length > this.expiryValue.length;
+
+      if(currentValue.length === 2){
+        if(isAdding){
+          currentValue = currentValue + "/";
+        }
+        else{
+          currentValue = currentValue.slice(0,lastCharNum)
+        }
       }
-      else if(event.target.value.length === 8){
-        event.target.value = event.target.value.slice(0,lastCharNum);
+      else if(currentValue.length === 8){
+        currentValue = currentValue.slice(0,lastCharNum);
       }
+
+      this.expiryValue = currentValue;
+      event.target.value = currentValue;
     }
   }
 

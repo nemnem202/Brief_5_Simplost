@@ -2,7 +2,6 @@
     width: 45%;
     display: flex;
     flex-direction: column;
-    gap: 40px;
     color: var(--darker-primary);
 }
 
@@ -40,6 +39,7 @@
     flex-direction: column;
     gap: 4px;
     font-weight: 600;
+    justify-content: center;
 }
 
 .payment-price{
@@ -115,4 +115,14 @@
 .error-message{
     color: #FF2C2C;
     font-size: var(--body-text-size);
+}
+
+@media (max-width: 768px) {
+  .payment-section{
+    width: 90%;
+  }
+
+  .payment-info-line{
+    flex-direction: column;
+  }
 }
