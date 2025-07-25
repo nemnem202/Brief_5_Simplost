@@ -114,3 +114,19 @@ footer {
 .site-info span:hover {
   text-decoration: underline;
 }
+
+@media (max-width: 768px) {
+  .site-info{
+    align-items: center;
+  }
+
+  footer{
+    padding: 20px;
+    height: auto;
+  }
+
+  header{
+    padding: 40px;
+    flex-direction: column;
+  }
+}
