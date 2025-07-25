@@ -247,7 +247,7 @@ export class PaymentComponent extends Component {
       const lastCharNum: number = currentValue.length-1;
       const lastInput: string = currentValue.charAt(lastCharNum);
 
-      if(!/[0-9]/.test(lastInput)){
+      if(!/[0-9/]/.test(lastInput)){
         currentValue = currentValue.slice(0, lastCharNum);
       }
 
