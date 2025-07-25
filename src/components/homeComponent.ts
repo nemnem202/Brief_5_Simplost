@@ -29,7 +29,7 @@ export class HomeComponent extends Component {
           standing: "economy",
           date: date,
         };
-        AppManager.getInstance().changePage("history");
+        AppManager.getInstance().changePage("form");
       });
 
       document.getElementById("parisRome")?.addEventListener("click", () => {
