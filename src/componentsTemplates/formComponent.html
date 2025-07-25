@@ -3,9 +3,10 @@
 
 
       <h2>Book Your Ticket</h2>
-      <div id="errors"></div>
+      
 
       <form class="booking-form" id= "reservation-form">
+      <div id="errors"></div>
       <h3>Add your details*</h3>
   
       <div class="name-row">
@@ -22,11 +23,11 @@
       <div class="contact-row">
        <div class="input-group">
        <label for="contact">Contact Details</label>
-       <input type="text" id="contact" name="contact" placeholder="+33 07 12 34 56 78" required>
+       <input type="number" id="contact" name="contact" placeholder="+33 07 12 34 56 78" required>
        </div>
        <div class="input-group">
        <label for="email">Email Address</label>
-       <input type="email" id="email" name="email" placeholder="email" class="error" required>
+       <input type="email" id="email" name="email" placeholder="email" required>
        </div>
       </div>
 
@@ -52,20 +53,13 @@
        <label for="start">Travel Start Date</label>
        <input type="date" id="start" name="startDate" required>
        </div>
-       <div class="input-group">
+       <!-- <div class="input-group">
        <label for="end">Travel End Date</label>
        <input type="date" id="end" name="endDate" required>
-       </div>
-      </div>
-
-      <div class="flight-time">
-       <div class="input-group">
-       <label for="start">Travel Start Date</label>
-       <input type="date" id="start" name="startDate" required>
-       </div>
-       <div class="input-group">
-       <label for="end">Travel End Date</label>
-       <input type="date" id="end" name="endDate" required>
+       </div> -->
+        <div class="input-group">
+       <label for="time">Time Of Departure</label>
+       <input type="time" id="start" name="startDate" required>
        </div>
       </div>
 
@@ -103,7 +97,7 @@
     </div>
     </div>
     <h3 id="final-price-box">The price for the travel will be: <span id="finalPrice"></span></h3> 
-    <button type="submit" class="final-btn" id="proceed-btn">Proceed to payment</button>
+    <button type="submit" class="final-btn" id="proceedBtn">Proceed to payment</button>
   </form>
 
     </main>

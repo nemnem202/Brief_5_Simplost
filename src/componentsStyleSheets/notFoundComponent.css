@@ -1,0 +1,11 @@
+.not-found-component{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.not-found-title{
+    font-size: var(--huge-text-size);
+}
