@@ -52,9 +52,9 @@ export const pagesItems: PageItem[] = [
     label: "payment",
     pageConstructor: () => new PaymentComponent(),
   },
-    {
+  {
     label: "history",
-    pageConstructor: () => new (HistoryComponent),
+    pageConstructor: () => new HistoryComponent(),
   },
   {
     label: "not-found",
