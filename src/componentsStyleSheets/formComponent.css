@@ -75,9 +75,9 @@ h3{
   font-size: 14px;
 }
 
-.input-group input.error {
+/* .input-group input.error {
   border: 2px solid #7D0C0C;
-}
+} */
 
 .class-selection {
   display: grid;
@@ -210,11 +210,23 @@ padding: 10px;
 
 .price{
   font-weight: 700;
+  display: none;
 }
 
 .boxcontent{
   font-size: 14px;
   line-height: 1.8;
+}
+
+.final-btn{
+  background-color: #8788FF;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 18px;
+  padding: 10px 24px 10px 24px;
+  font-size: 18px;
+  width: auto;
+  cursor: pointer;
 }
 
 @media (max-width: 768px) {
@@ -231,4 +243,25 @@ padding: 10px;
     flex-direction: column;
     align-items: center;
   }
+}
+
+
+input.error, select.error {
+  border: 2px solid red;
+}
+
+#errors {
+  margin-top: 10px;
+  color: red;
+  font-size: 0.9rem;
+}
+
+.selected {
+  outline: 2px solid rgb(3, 10, 33);
+  border-radius: 4px;
+  background-color: #eef6ff;
+}
+
+#final-price-box{
+  color: #0C0C57;
 }
