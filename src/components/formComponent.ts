@@ -11,9 +11,9 @@ export class FormComponent extends Component {
   private selectedClass: StandingValue | null = null;
   private debounceTimers: Map<string, number> = new Map();
   private useState: boolean = false;
-  private form: HTMLFormElement;
-  private finalPriceElem: HTMLElement;
-  private destinationSelect: HTMLSelectElement;
+  private form!: HTMLFormElement;
+  private finalPriceElem!: HTMLElement;
+  private destinationSelect!: HTMLSelectElement;
   private listeners: Array<() => void> = [];
 
   constructor() {
