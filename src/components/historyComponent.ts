@@ -2,9 +2,8 @@ import { AppManager } from "../appManager";
 import { Component } from "../lib/component";
 import createButton from "../utils/button";
 import templateHTML from "../componentsTemplates/historyComponent.html?raw";
-import type { ClientInformations, FlightInformation } from "../data/Types";
+import type { ClientInformations, FlightInformation, FlightInformationRaw } from "../data/Types";
 import { standing } from "../data/data";
-import { json } from "react-router-dom";
 
 export class HistoryComponent extends Component {
   flightInformation: FlightInformation | undefined;
@@ -12,6 +11,39 @@ export class HistoryComponent extends Component {
 
   constructor() {
     super(templateHTML);
+
+    const getClient  = (): ClientInformations[] => {
+  const raw = localStorage.getItem("clients");
+  return raw ? JSON.parse(raw) as ClientInformations[] : [];
+};
+
+
+const getFlights = () : FlightInformationRaw[] => {
+
+  const raw = localStorage.getItem("flights");
+  return raw ? JSON.parse(raw) as FlightInformationRaw[] : [];
+
+};
+
+
+const convertDate = (
+  raw: FlightInformationRaw
+): FlightInformation => ({
+  ...raw,
+  date: new Date(raw.date),
+});
+
+
+
+const clients : ClientInformations[]=  getClient() 
+
+const flights : FlightInformation[] =   getFlights().map ( flightRaw =>   convertDate( flightRaw) )  
+
+
+console.log ( "ICI")
+
+console.log ( clients , flights )
+
 
 
     setTimeout(() => {
