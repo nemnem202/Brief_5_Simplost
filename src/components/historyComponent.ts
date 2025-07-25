@@ -42,31 +42,36 @@ export class HistoryComponent extends Component {
     console.log(pastClients, pastFlights);
 
     setTimeout(() => {
-      this.flightInformation = AppManager.getInstance().flightInformation;
-      this.clientInformation = AppManager.getInstance().clientInformations;
 
-      const tic = document.getElementById("travel-info-container");
 
-      if (this.flightInformation && this.clientInformation) {
-        new travelCardComponent(
-          "upcoming-travel",
-          this.flightInformation,
-          this.clientInformation
-        );
-      } else {
-        if (tic) {
-          tic.innerHTML = "";
-        }
-      }
+
+      const today : Date = new Date()
+
 
       for (let i = 0; i < pastClients.length; i++) {
         if (pastFlights[i]) {
 
-          new travelCardComponent(
+          console.log (pastFlights[i].date , today)
+
+
+          if (pastFlights[i].date > today ) 
+          {
+            new travelCardComponent(
+            "upcoming-travel",
+            pastFlights[i],
+            pastClients[i]
+          );
+
+          }
+          else
+          {
+            new travelCardComponent(
             "past-travels",
             pastFlights[i],
             pastClients[i]
           );
+
+          }
         }
       }
 
